@@ -511,30 +511,30 @@ function buildWord(){
   var TD='font-size:9pt;font-family:Arial;vertical-align:top;padding:3pt 5pt;border:1px solid #888;word-wrap:break-word;overflow-wrap:break-word;';
   var TH=TD+'background:#C6D9F1;font-weight:bold;';
   var TS='border-collapse:collapse;width:100%;table-layout:fixed;margin-bottom:0;';
-  var SP='margin-bottom:18pt;';
 
   function T(cols,rows){
     var cg='<colgroup>';
     cols.forEach(function(w){cg+='<col style="width:'+w+'">';});
-    return '<div style="'+SP+'"><table style="'+TS+'">'+cg+'</colgroup>'+rows+'</table></div>';
+    return '<table style="'+TS+'">'+cg+'</colgroup>'+rows+'</table>'+
+           '<p style="margin:0;font-size:9pt;line-height:18pt">&nbsp;</p>';
   }
   function H(t,n){return '<tr><td colspan="'+n+'" style="'+TH+'">'+t+'</td></tr>';}
   function D(t,s){return '<td style="'+TD+(s||'')+'">'+( t||'&nbsp;')+'</td>';}
   function S(t,n,s){return '<td colspan="'+n+'" style="'+TD+(s||'')+'">'+( t||'&nbsp;')+'</td>';}
 
   // Header: tabla sin bordes — logo izq + CARPETA N° der
-  var hdr='<table style="border-collapse:collapse;width:100%;margin-bottom:6pt;">'+
+  var hdr='<table style="border-collapse:collapse;width:100%;margin-bottom:6pt;mso-table-lspace:0;mso-table-rspace:0;">'+
     '<tr>'+
-    '<td style="border:none;padding:0;width:4cm;vertical-align:top">'+
-      '<img src="data:image/jpeg;base64,'+LB+'" style="width:3.62cm;height:1.70cm">'+
+    '<td style="border:none;padding:0;width:4cm;vertical-align:top;mso-border-alt:none">'+
+      '<img src="data:image/jpeg;base64,'+LB+'" width="137" height="64" style="width:3.62cm;height:1.70cm;display:block">'+
     '</td>'+
-    '<td style="border:none;padding:0;vertical-align:top;text-align:right;font-size:9pt;font-family:Arial">'+
+    '<td style="border:none;padding:0;vertical-align:top;text-align:right;font-size:9pt;font-family:Arial;mso-border-alt:none">'+
       'CARPETA N&deg;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
     '</td>'+
     '</tr></table>';
 
   // T1 Identificación (33.5/26.1/40.4)
-  var t1=T(['33.5%','26.1%','40.4%'],
+  var t1=T(['35%','27%','38%'],
     H('IDENTIFICACION DEL SINIESTRO',3)+
     '<tr>'+D('Compañía: HDI Seguros S.A.')+S('Fecha de contacto:',2)+'</tr>'+
     '<tr>'+D('Nº póliza '+pol)+D('N° siniestro: '+sin)+D('N° propuesta:')+'</tr>'+
@@ -544,7 +544,7 @@ function buildWord(){
     '<tr>'+D('Fecha Denuncia: '+fden)+S('Fecha Inspección: '+finsp,2)+'</tr>');
 
   // T2 Datos Unidad (18.9/14.5/26.4/40.2)
-  var t2=T(['18.9%','14.5%','26.4%','40.2%'],
+  var t2=T(['20%','15%','27%','38%'],
     H('DATOS UNIDAD DE RIESGO INSPECCIONADA',4)+
     '<tr>'+D('Nombre del Predio:')+S(predio,3)+'</tr>'+
     '<tr>'+S('Región: '+reg,2)+S('Comuna: '+com,2)+'</tr>'+
@@ -595,13 +595,13 @@ function buildWord(){
     '<tr>'+S('Rendimiento potencial (ton/ha): '+rdto,2)+S('Rendimiento asegurado (ton/ha): '+rdtoaseg,2)+'</tr>'+
     '<tr>'+D('Riesgo cubierto (%):')+S('Riesgo no cubierto (%):',2)+D('Total daño (%):')+'</tr>'+
     '<tr>'+S('Rendimiento estimado (ton/ha): '+rdtoest,2)+S('Clasificación de la perdida: '+clas,2)+'</tr>'+
-    '<tr>'+S('Comentarios Asegurado o Representante: '+obsaseg,4,'height:60pt;vertical-align:top;')+'</tr>'+
+    '<tr>'+S('<b>Comentarios Asegurado o Representante:</b> '+obsaseg,4,'height:60pt;vertical-align:top;')+'</tr>'+
     '<tr>'+S('<b>Comentarios inspector:</b> '+obsinsp,4,'height:60pt;vertical-align:top;')+'</tr>'+
     '<tr>'+S('Inspector: '+insp,2)+S('Acompañante SGC:',2)+'</tr>'+
     '<tr>'+S('Asegurado: '+aseg,2)+S('Técnico: '+tec,2)+'</tr>');
 
   var inst=
-    '<p style="font-size:9pt;font-family:Arial;font-weight:bold;margin:4pt 0 2pt">INSTRUCTIVO DE SINIESTROS</p>'+
+    '<p style="font-size:9pt;font-family:Arial;font-weight:bold;margin:18pt 0 2pt">INSTRUCTIVO DE SINIESTROS</p>'+
     '<p style="font-size:9pt;font-family:Arial;font-weight:bold;margin:2pt 0">I.  CLASIFICACION DE LOS DAÑOS</p>'+
     '<ol style="font-size:9pt;font-family:Arial;margin:0 0 4pt;padding-left:1.2cm">'+
     '<li>PERDIDA TOTAL: Daño que afecta toda la superficie sembrada. No se justifica mantenerlo hasta la etapa de cosecha.</li>'+
